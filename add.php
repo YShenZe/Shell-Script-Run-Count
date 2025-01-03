@@ -75,13 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">添加 Token</button>
             </form>
         </div>
+
         <!-- Token 列表 -->
         <div class="bg-white shadow-md rounded-lg p-6 mt-6">
             <h2 class="text-xl font-bold mb-4">Token 列表</h2>
             <?php if (empty($tokens)): ?>
                 <p class="text-gray-600">暂无 Token 数据。</p>
             <?php else: ?>
-                <div class="overflow-auto">
+                <div class="overflow-x-auto">
                     <table class="table-auto w-full border-collapse border border-gray-300">
                         <thead>
                             <tr>
@@ -105,11 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
                 </div>
             <?php endif; ?>
         </div>
-                <div class="bg-white shadow-md rounded-lg p-6 mt-6">
+
+        <!-- Token 调用次数统计 -->
+        <div class="bg-white shadow-md rounded-lg p-6 mt-6">
             <h2 class="text-xl font-bold mb-4">Token 调用次数统计</h2>
             <canvas id="lineChart" width="400" height="200"></canvas>
         </div>
-         <script>
+    </div>
+
+    <script>
         // Token 授权次数折线图
         const lineLabels = <?php echo json_encode(array_keys($data)); ?>;
         const lineData = <?php echo json_encode(array_values($data)); ?>;
@@ -143,6 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
                 }
             }
         });
-        </script>
+    </script>
 </body>
 </html>
